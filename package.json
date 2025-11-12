@@ -1,0 +1,44 @@
+{
+  "name": "mern-testing-assignment",
+  "version": "1.0.0",
+  "description": "MERN Stack Testing and Debugging Assignment",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "concurrently \"cd client && npm test\" \"cd server && npm test\" --kill-others --success first",
+    "test:client": "cd client && npm test",
+    "test:server": "cd server && npm test",
+    "test:server:watch": "cd server && npm run test:watch",
+    "test:server:coverage": "cd server && npm run test:coverage",
+    "test:server:debug": "cd server && cross-env NODE_OPTIONS=--inspect-brk jest --runInBand",
+    "test:coverage": "concurrently \"cd client && npm test -- --coverage\" \"cd server && npm test -- --coverage\" --kill-others --success first",
+    "test:watch": "concurrently \"cd client && npm test -- --watchAll\" \"cd server && npm test -- --watchAll\" --kill-others --success first",
+    "setup-test-db": "cd server && npm run setup-test-db",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix"
+  },
+  "keywords": [
+    "MERN",
+    "Testing",
+    "Debugging",
+    "React",
+    "Node",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
